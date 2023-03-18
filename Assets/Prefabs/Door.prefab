@@ -343,5 +343,6 @@ MonoBehaviour:
   PointReachedFeedback: {fileID: 0}
   EndReachedFeedback: {fileID: 0}
   _doorCamera: {fileID: 3147706995221859693}
+  _cameraDelayForLeverAnimation: 0.5
   _cameraDelayForBlend: 2
   _cameraDelayForDoorOpening: 1

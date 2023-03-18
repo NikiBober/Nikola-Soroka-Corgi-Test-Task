@@ -14,22 +14,29 @@ namespace MoreMountains.CorgiEngine
 
         [SerializeField]
         [Tooltip("Virtual Cinemachine camera adjusted to the door")]
-        GameObject _doorCamera;
+        private GameObject _doorCamera;
+        [SerializeField]
+        [Tooltip("Time to see lever animation")]
+        private float _cameraDelayForLeverAnimation = 0.5f;
         [SerializeField]
         [Tooltip("CinemachineBrain blend time")]
-        float _cameraDelayForBlend = 2.0f;
+        private float _cameraDelayForBlend = 2.0f;
         [SerializeField]
         [Tooltip("Time needed to complete door movement")]
-        float _cameraDelayForDoorOpening = 1.0f;
+        private float _cameraDelayForDoorOpening = 1.0f;
 
-        // Call this function on KeyOperatedZone Actions
+        // Call this function on KeyOperatedZone Actions for activation
         public void OpenDoor()
         {
-            StartCoroutine(OpenDoorRoutine());
+            if (_doorCamera != null)
+            {
+                StartCoroutine(OpenDoorRoutine());
+            }
         }
-
-        IEnumerator OpenDoorRoutine()
+        // Open door after camera finish movement, then return camera to the player
+        private IEnumerator OpenDoorRoutine()
         {
+            yield return new WaitForSeconds(_cameraDelayForLeverAnimation);
             _doorCamera.SetActive(true);
             yield return new WaitForSeconds(_cameraDelayForBlend);
             AuthorizeMovement();
