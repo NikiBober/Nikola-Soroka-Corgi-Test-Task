@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using MoreMountains.Tools;
 using UnityEngine;
 
@@ -14,7 +12,7 @@ namespace MoreMountains.CorgiEngine
         [MMInspectorGroup("Lever Control", true, 28)]
 
         [SerializeField]
-        [Tooltip("Animation state name to palay on activation")]
+        [Tooltip("Animation state name to play on activation")]
         private string _activateAnimationName = "Base Layer.jumper";
         private Animator _animator;
 

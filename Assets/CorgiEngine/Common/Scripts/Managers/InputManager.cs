@@ -568,5 +568,12 @@ namespace MoreMountains.CorgiEngine
 		public virtual void ThrowButtonPressed() { ThrowButton.State.ChangeState(MMInput.ButtonStates.ButtonPressed); }
 		public virtual void ThrowButtonUp() { ThrowButton.State.ChangeState(MMInput.ButtonStates.ButtonUp); }
 
+		//set movement to zero when needed
+		public virtual void ResetMovement()
+        {
+			_primaryMovement = Vector2.zero;
+			_secondaryMovement = Vector2.zero;
+		}
+
 	}
 }

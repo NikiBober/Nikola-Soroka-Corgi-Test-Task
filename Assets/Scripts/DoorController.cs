@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace MoreMountains.CorgiEngine
@@ -24,24 +23,44 @@ namespace MoreMountains.CorgiEngine
         [SerializeField]
         [Tooltip("Time needed to complete door movement")]
         private float _cameraDelayForDoorOpening = 1.0f;
+        
+        private InputManager _inputManager;
+
+        //Get referenses for block player movement
+        protected override void Start()
+        {
+            base.Start();
+            _inputManager = InputManager.TryGetInstance();
+        }
 
         // Call this function on KeyOperatedZone Actions for activation
         public void OpenDoor()
         {
-            if (_doorCamera != null)
+            if (_doorCamera != null && _inputManager != null)
             {
                 StartCoroutine(OpenDoorRoutine());
             }
         }
+
         // Open door after camera finish movement, then return camera to the player
         private IEnumerator OpenDoorRoutine()
         {
+            BlockPlayerMovement(true);
             yield return new WaitForSeconds(_cameraDelayForLeverAnimation);
             _doorCamera.SetActive(true);
             yield return new WaitForSeconds(_cameraDelayForBlend);
             AuthorizeMovement();
             yield return new WaitForSeconds(_cameraDelayForDoorOpening);
             _doorCamera.SetActive(false);
+            yield return new WaitForSeconds(_cameraDelayForBlend);
+            BlockPlayerMovement(false);
+        }
+
+        // prevents user input and horizontal movement of character
+        private void BlockPlayerMovement(bool state)
+        {
+            _inputManager.InputDetectionActive = !state;
+            _inputManager.ResetMovement();
         }
     }
 

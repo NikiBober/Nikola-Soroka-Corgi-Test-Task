@@ -186,7 +186,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MoreMountains.CorgiEngine.DoorController, Assembly-CSharp
-        m_MethodName: OpenDoor
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -207,3 +207,4 @@ MonoBehaviour:
   KeyAction:
     m_PersistentCalls:
       m_Calls: []
+  _activateAnimationName: Base Layer.jumper

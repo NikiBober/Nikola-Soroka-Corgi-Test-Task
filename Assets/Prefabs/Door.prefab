@@ -346,3 +346,4 @@ MonoBehaviour:
   _cameraDelayForLeverAnimation: 0.5
   _cameraDelayForBlend: 2
   _cameraDelayForDoorOpening: 1
+  _inputManager: {fileID: 0}
